@@ -22,7 +22,7 @@ def longestPalindrome(s):
 		return Max_Str
 
 
-print(longestPalindrome("babad"))
+print(longestPalindrome("ab"))
 print(longestPalindrome("jamavpla"))
 
 
