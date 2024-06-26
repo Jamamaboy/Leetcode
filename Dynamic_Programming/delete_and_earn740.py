@@ -17,6 +17,21 @@ class Solution:
 		# dp = [0, 0, 4, 9, 9]
 		return dp[-1]
 
+	def deleteAndEarnPatch1(self, nums: list[int]) -> int:
+
+		if not nums : return 0
+
+		num_lookup = [0] * (max(nums) + 1)
+		for num in nums:
+			num_lookup[num] += num
+
+		dp = [0] * (len(num_lookup) + 1)
+
+		for n in range(1, len(num_lookup)):
+			dp[n] = max(num_lookup[n] + dp[n - 2], dp[n - 1])
+
+		return max(dp[-1], dp[-2])
+
 nums = [2,2,3,3,3,4]
-print(Solution().deleteAndEarn(nums))
+print(Solution().deleteAndEarnPatch1(nums))
 
