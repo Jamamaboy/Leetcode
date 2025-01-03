@@ -5,20 +5,25 @@ class ListNode:
 
 class Solution:
 	def addTwoNumbers(self, l1: [ListNode], l2: [ListNode]) -> [ListNode]:
-		dummy = ListNode()
-		current = dummy
 		carry = 0
+		current = dummy = ListNode()
 		while l1 or l2 or carry:
 			val1 = l1.val if l1 else 0
 			val2 = l2.val if l2 else 0
+
 			total = val1 + val2 + carry
 			carry = total // 10
-			current.next = ListNode(total % 10)
-			current = current.next
-			if l1: l1 = l1.next
-			if l2: l2 = l2.next
-		return dummy.next
-     		# for i in range(len(l1)):
+			node_val = total % 10
+			dummy.next = ListNode(node_val)
+
+			if l1:
+				l1 = l1.next
+			if l2:
+				l2 = l2.next
+			dummy = dummy.next
+
+		return current.next
+		# for i in range(len(l1)):
 		# 	l1[i] = str(l1[i])
 		# 	l2[i] = str(l2[i])
 		# l1 = int("".join(l1[::-1]))
